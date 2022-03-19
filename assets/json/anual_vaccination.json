@@ -1,0 +1,18 @@
+{
+    "AgeGroup": [
+      
+        {
+          "52-104": [
+            { "recommended": ["DHPP"] },
+            { "optional": ["Influenza","CoronaVirus","Leptospirosis","Bordetella","Lyme Disease"] }
+          ]
+        },
+        {
+          "52-156": [
+            { "recommended": ["Rabies"] },
+            { "optional": [] }
+          ]
+        }
+    ]
+  }
+  

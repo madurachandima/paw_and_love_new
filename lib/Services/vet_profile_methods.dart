@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Services/storage_methods.dart';
+import 'package:paw_and_love/Utils/search_quary_builder.dart';
+import 'package:paw_and_love/model/vet_clinic_model.dart';
 import 'package:paw_and_love/model/vet_profile_model.dart';
 
 class VetProfileMethods {
@@ -59,11 +61,58 @@ class VetProfileMethods {
     return "success";
   }
 
-  addNewClinics(
+  Future<String> addNewClinics(
       {required String? clinicName,
       required String clinicLocation,
       required String clinicAddress,
       required String clinicDescription,
       required String? openEvery,
-      required String exceptEvery}) async {}
+      required String? exceptEvery,
+      required String? openTime,
+      required String? closeTime}) async {
+    if (clinicName == "") {
+      return "Please enter clinic name";
+    }
+
+    if (clinicLocation == "") {
+      return "Please select the clinic location";
+    }
+    if (clinicAddress == "") {
+      return "Please enter the address";
+    }
+    if (clinicDescription == "") {
+      return "Please enter description";
+    }
+    if (openTime == "" || closeTime == "") {
+      return "Select Open and Close times";
+    }
+
+    try {
+      VetClinicModel _vetClinicModel = VetClinicModel(
+          clinicName: clinicName,
+          clinicLocation: clinicLocation,
+          clinicAddress: clinicAddress,
+          clinicDescription: clinicDescription,
+          clinicOpenDaysEvery: openEvery,
+          clinicOpenDaysExcept: exceptEvery,
+          openTimeTo: openTime,
+          closeTime: closeTime,
+          vetId: FirebaseAuth.instance.currentUser!.uid,
+          searchQueryLocation:
+              SearchQuaryBuilder.searchQuaryBuilder(clinicLocation),
+          searchQueryClinicName:
+              SearchQuaryBuilder.searchQuaryBuilder(clinicName));
+
+      await _firestore
+          .collection('Vet_clinic')
+          .doc()
+          .set(_vetClinicModel.toJson());
+    } on FirebaseException catch (err) {
+      return err.message.toString();
+    } catch (e) {
+      return "Somthing went to wrong";
+    }
+
+    return "success";
+  }
 }

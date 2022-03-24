@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/assets_path.dart';
 
 import 'package:paw_and_love/Config/color_config.dart';
+import 'package:paw_and_love/Widgets/vet_profile_circuler_avatar.dart';
 import 'package:paw_and_love/controller/home_controller.dart';
-import 'package:paw_and_love/screens/add_new_clinic.dart';
+import 'package:paw_and_love/screens/vet/add_new_clinic.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -56,7 +59,7 @@ class ViewVetProfile extends StatelessWidget {
                   ),
                   child: Text(
                     "Doctor Name",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Obx(() => Padding(
@@ -81,7 +84,7 @@ class ViewVetProfile extends StatelessWidget {
                   ),
                   child: Text(
                     "City",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Obx(() => Padding(
@@ -105,7 +108,7 @@ class ViewVetProfile extends StatelessWidget {
                   ),
                   child: Text(
                     "About",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Obx(() => Padding(
@@ -130,36 +133,50 @@ class ViewVetProfile extends StatelessWidget {
                   ),
                   child: Text(
                     "Add Clinic Places",
-                    style: TextStyle(fontSize: 12.sp),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
-                Wrap(
-                  children: [
-                    // Wrap(
-                    //   children: snapshot.data!.docs
-                    //       .map((item) => DogProfileCircularAvatar(
-                    //             snap: item,
-                    //           ))
-                    //       .toList(),
-                    // ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 20.h,
-                        width: 25.w,
-                        child: IconButton(
-                            onPressed: () {
-                              Get.to(() => const AddnewClinic());
-                            },
-                            icon: const Icon(
-                              CupertinoIcons.add_circled,
-                              size: 100,
-                              color: ColorConfig.yellow,
-                            )),
-                      ),
-                    )
-                  ],
-                ),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Vet_clinic')
+                        .where('vet_id',
+                            isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                            snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return Wrap(
+                        children: [
+                          Wrap(
+                            children: snapshot.data!.docs
+                                .map((snap) =>
+                                    VetProfileCircularAvatar(snap: snap))
+                                .toList(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              height: 20.h,
+                              width: 25.w,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Get.to(() => const AddnewClinic());
+                                  },
+                                  icon: const Icon(
+                                    CupertinoIcons.add_circled,
+                                    size: 100,
+                                    color: ColorConfig.yellow,
+                                  )),
+                            ),
+                          )
+                        ],
+                      );
+                    }),
               ]))
             ];
           },

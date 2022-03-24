@@ -6,7 +6,7 @@ import 'package:paw_and_love/Services/dog_profile_methods.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/controller/dog_profile_view_controllr.dart';
 
-import 'package:paw_and_love/screens/dog_profile_view.dart';
+import 'package:paw_and_love/screens/users/dog_profile_view.dart';
 import 'package:sizer/sizer.dart';
 
 class DogProfileCircularAvatar extends StatelessWidget with DogProfileMethod {

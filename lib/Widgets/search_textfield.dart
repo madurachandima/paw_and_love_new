@@ -12,6 +12,7 @@ class SearchTextField extends StatelessWidget {
   final Color textColor;
   var callbackFunction;
   var onTextChange;
+  final prefixIcon;
   SearchTextField(
       {Key? key,
       required this.textEditingController,
@@ -20,7 +21,8 @@ class SearchTextField extends StatelessWidget {
       required this.textInputType,
       required this.textColor,
       required this.callbackFunction,
-      required this.onTextChange})
+      required this.onTextChange,
+      this.prefixIcon = Icons.search})
       : super(key: key);
 
   @override
@@ -54,7 +56,7 @@ class SearchTextField extends StatelessWidget {
                 callbackFunction();
               },
               icon: Icon(
-                Icons.search,
+                prefixIcon,
                 size: 5.h,
                 color: ColorConfig.orange,
               )),

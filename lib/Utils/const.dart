@@ -41,8 +41,8 @@ List<String> cites = [
   "Kurunegala",
 ];
 
-List<String> openDays = ["Every Days", "Every Week Days", "Every Week End"];
-List<String> closeDays = [
+List<String> openDaysList = ["Every Days", "Every Week Days", "Every Week End"];
+List<String> closeDaysList = [
   "None",
   "Excepts Public Holidays",
   "Excepts Bank Holidays",

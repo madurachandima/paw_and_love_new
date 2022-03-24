@@ -5,9 +5,9 @@ import 'package:paw_and_love/Widgets/dog_symptom_view.dart';
 import 'package:paw_and_love/model/dog_illness_model.dart';
 import 'package:sizer/sizer.dart';
 
-class DogSymptomsView extends StatelessWidget {
+class DogSymptomsViewCard extends StatelessWidget {
   final DogIllnessModel dogIllnessModel;
-  const DogSymptomsView({Key? key, required this.dogIllnessModel})
+  const DogSymptomsViewCard({Key? key, required this.dogIllnessModel})
       : super(key: key);
 
   @override

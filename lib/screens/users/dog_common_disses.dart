@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Widgets/chat_bot_view.dart';
 import 'package:paw_and_love/Widgets/customeCircularProgress.dart';
-import 'package:paw_and_love/Widgets/dog_symptoms_view.dart';
+import 'package:paw_and_love/Widgets/dog_symptoms_view_card.dart';
 import 'package:paw_and_love/Widgets/search_textfield.dart';
 import 'package:paw_and_love/controller/dog_common_disses_controller.dart';
 import 'package:paw_and_love/model/dog_illness_model.dart';
@@ -92,7 +91,7 @@ class DogCommonDisses extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
-                                  return DogSymptomsView(
+                                  return DogSymptomsViewCard(
                                     dogIllnessModel: DogIllnessModel.fromSnap(
                                         snapshot.data!.docs[index].data()),
                                   );

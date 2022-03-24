@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_and_love/screens/home.dart';
-import 'package:paw_and_love/screens/dog_profiles.dart';
+import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class BottomNavigationbarHandler extends StatelessWidget {

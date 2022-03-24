@@ -4,11 +4,11 @@ import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Utils/const.dart';
 
 import 'package:paw_and_love/controller/home_controller.dart';
-import 'package:paw_and_love/screens/dog_common_disses.dart';
-import 'package:paw_and_love/screens/dog_profiles.dart';
 import 'package:paw_and_love/screens/breeders_&_sellers.dart';
-import 'package:paw_and_love/screens/vet_new_profile.dart';
-import 'package:paw_and_love/screens/vet_profile_view.dart';
+import 'package:paw_and_love/screens/users/dog_common_disses.dart';
+import 'package:paw_and_love/screens/users/dog_profiles.dart';
+import 'package:paw_and_love/screens/vet/vet_new_profile.dart';
+import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
 import 'package:paw_and_love/screens/veterinarian.dart';
 
 import 'package:sizer/sizer.dart';

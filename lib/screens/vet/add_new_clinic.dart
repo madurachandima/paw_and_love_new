@@ -2,11 +2,14 @@ import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Config/font_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
+import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Utils/styles.dart';
 import 'package:paw_and_love/Widgets/custome_button.dart';
 import 'package:paw_and_love/Widgets/custome_dropdown_list.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
 import 'package:paw_and_love/controller/vet_profile_controller.dart';
+import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
+
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +22,42 @@ class AddnewClinic extends StatelessWidget {
   Widget build(BuildContext context) {
     VetProfileController _controller = Get.put(VetProfileController());
 
-    _createNewClinic() async {}
+    _createNewClinic() async {
+      _controller.isUploading.value = true;
+      var result = await _controller.addNewClinic();
+      if (result != "success") {
+        flutterToastMessage(
+            title: "Error",
+            message: result.toString(),
+            position: SnackPosition.TOP,
+            backgroundColor: ColorConfig.errorRed);
+        _controller.isUploading.value = false;
+      } else {
+        flutterToastMessage(
+            title: "Success",
+            message: "Dog profile is created",
+            position: SnackPosition.TOP,
+            backgroundColor: ColorConfig.successGreen);
+        Get.off(() => const ViewVetProfile());
+        _controller.isUploading.value = false;
+      }
+    }
+
     _openTimePicker() async {
       TimeRange? result = await showTimeRangePicker(
+        // backgroundColor: ColorConfig.orange,
+        fromText: "Open From",
+        toText: "Open To",
         context: context,
       );
-      print(result);
+
+      _controller.openTimeto.value = result!.startTime.hour.toString() +
+          ":" +
+          result.startTime.minute.toString();
+      _controller.closeTimeto.value = result.endTime.hour.toString() +
+          ":" +
+          result.endTime.minute.toString();
+      ;
     }
 
     return Scaffold(
@@ -40,6 +73,7 @@ class AddnewClinic extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     "Add New Clinic",
+                    style: TextStyle(color: ColorConfig.white),
                   ),
                   // background:Container(),
                 ),
@@ -175,10 +209,8 @@ class AddnewClinic extends StatelessWidget {
                       onChanged: (value) {
                         _controller.openDays.value = value!;
                       },
-                      dropdownValue: _controller.openDays.value == ""
-                          ? openDays[0]
-                          : _controller.openDays.value,
-                      dropdownItems: openDays)),
+                      dropdownValue: _controller.openDays.value,
+                      dropdownItems: openDaysList)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -197,10 +229,8 @@ class AddnewClinic extends StatelessWidget {
                       onChanged: (value) {
                         _controller.closeDays.value = value!;
                       },
-                      dropdownValue: _controller.closeDays.value == ""
-                          ? closeDays[0]
-                          : _controller.closeDays.value,
-                      dropdownItems: closeDays)),
+                      dropdownValue: _controller.closeDays.value,
+                      dropdownItems: closeDaysList)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -213,16 +243,19 @@ class AddnewClinic extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
+                  child: Obx(() => CustomeTextInputField(
                       callbackFunction: () => _openTimePicker(),
                       isReadOnly: true,
-                      textEditingController: TextEditingController(),
+                      textEditingController: TextEditingController(
+                          text: _controller.openTimeto.value != ""
+                              ? " ${_controller.openTimeto.value} To ${_controller.closeTimeto.value} "
+                              : ""),
                       isPass: false,
                       hintText: "Clinic Open Time ",
                       lableText: "Please Enter Clinic Description",
                       textInputType: TextInputType.multiline,
                       isMultyLineText: true,
-                      textColor: ColorConfig.orange),
+                      textColor: ColorConfig.orange)),
                 ),
                 Padding(
                   padding:
@@ -230,9 +263,8 @@ class AddnewClinic extends StatelessWidget {
                   child: CustomeButton(
                     getxController: _controller,
                     buttonText: "Add New Clinic",
-                    callbackFunction: _controller.isUploading.value
-                        ? null
-                        : _createNewClinic(),
+                    callbackFunction:
+                        _controller.isUploading.value ? null : _createNewClinic,
                     backgroundColor: ColorConfig.orange,
                   ),
                 )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/styles.dart';
+import 'package:paw_and_love/Utils/utill.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
 import 'package:sizer/sizer.dart';
 
@@ -10,17 +11,8 @@ class ViewClinic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _returnFormatedDate(beforeWord) {
-      String word = beforeWord;
-      List splitWord = word.split(':');
-      if (splitWord[1].toString().length == 1) {
-        return "${splitWord[0]}:${splitWord[1] + 0.toString()}";
-      }
-      return word;
-    }
-
     _returnOpenTime() =>
-        "Open ${_returnFormatedDate(snap['open_time_to'])} To ${_returnFormatedDate(snap['close_time_to'])} (24h Format) ";
+        "Open ${returnFormatedDate(snap['open_time_to'])} To ${returnFormatedDate(snap['close_time_to'])} (24h Format) ";
 
     return Scaffold(
       body: NestedScrollView(

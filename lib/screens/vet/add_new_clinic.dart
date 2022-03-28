@@ -7,7 +7,7 @@ import 'package:paw_and_love/Utils/styles.dart';
 import 'package:paw_and_love/Widgets/custome_button.dart';
 import 'package:paw_and_love/Widgets/custome_dropdown_list.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
-import 'package:paw_and_love/controller/vet_profile_controller.dart';
+import 'package:paw_and_love/controller/vet/vet_profile_controller.dart';
 import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
 
 import 'package:time_range_picker/time_range_picker.dart';

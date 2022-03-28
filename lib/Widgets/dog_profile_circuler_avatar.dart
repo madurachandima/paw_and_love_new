@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Services/dog_profile_methods.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
-import 'package:paw_and_love/controller/dog_profile_view_controllr.dart';
+import 'package:paw_and_love/controller/users/dog_profile_view_controllr.dart';
 
 import 'package:paw_and_love/screens/users/dog_profile_view.dart';
 import 'package:sizer/sizer.dart';

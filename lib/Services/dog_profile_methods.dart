@@ -3,7 +3,8 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paw_and_love/Services/storage_methods.dart';
-import 'package:paw_and_love/model/dog_profile_model.dart';
+import 'package:paw_and_love/Utils/const.dart';
+import 'package:paw_and_love/model/user/dog_profile_model.dart';
 
 class DogProfileMethod {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -57,7 +58,7 @@ class DogProfileMethod {
       // print(err.message);
       return err.message;
     } catch (e) {
-      return "Somthing is wrong";
+      return ERROR_MESSAGE;
     }
     callback();
     return "success";
@@ -79,7 +80,7 @@ class DogProfileMethod {
       // print(err.message);
       return err.message;
     } catch (e) {
-      return "Somthing is wrong";
+      return ERROR_MESSAGE;
     }
     return "success";
   }
@@ -95,7 +96,7 @@ class DogProfileMethod {
     } on FirebaseException catch (err) {
       return err.message.toString();
     } catch (e) {
-      return "Somthing is wrong";
+      return ERROR_MESSAGE;
     }
     return "success";
   }

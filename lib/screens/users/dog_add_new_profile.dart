@@ -13,8 +13,9 @@ import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Utils/styles.dart';
 import 'package:paw_and_love/Widgets/custome_button.dart';
-import 'package:paw_and_love/controller/dog_profile_controller.dart';
-import 'package:paw_and_love/model/vaccination_date_model.dart';
+import 'package:paw_and_love/controller/users/dog_profile_controller.dart';
+
+import 'package:paw_and_love/model/vet/vaccination_date_model.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:sizer/sizer.dart';
 import 'package:paw_and_love/Utils/utill.dart';

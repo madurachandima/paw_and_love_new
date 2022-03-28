@@ -13,7 +13,7 @@ import 'package:paw_and_love/Config/font_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Widgets/custome_button.dart';
-import 'package:paw_and_love/controller/vet_profile_controller.dart';
+import 'package:paw_and_love/controller/vet/vet_profile_controller.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:sizer/sizer.dart';
 import 'package:paw_and_love/Utils/utill.dart';
@@ -24,7 +24,6 @@ class NewVetProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  DogProfileController _profileController = Get.put(DogProfileController());
     VetProfileController _vetProfileController =
         Get.put(VetProfileController());
 

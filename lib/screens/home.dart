@@ -9,7 +9,7 @@ import 'package:paw_and_love/screens/users/dog_common_disses.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:paw_and_love/screens/vet/vet_new_profile.dart';
 import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
-import 'package:paw_and_love/screens/veterinarian.dart';
+import 'package:paw_and_love/screens/make_appointment.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -39,44 +39,47 @@ class Home extends StatelessWidget {
                             text: _controller.userName.value,
                             style: Theme.of(context).textTheme.headline2),
                       ]))),
-              Obx(() => Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      cardWidget(
-                          image: userRole == VET_ROLE
-                              ? doctorProfile
-                              : userRole == SELLER_ROLE
-                                  ? sellerProfile
-                                  : dogpPofile,
-                          text: "Profile",
-                          context: context,
-                          pageName: userRole == VET_ROLE
-                              ? _controller.isHaveCompletedProfile.value
-                                  ? const ViewVetProfile()
-                                  : const NewVetProfile()
-                              : const DogProfile()),
-                      const Spacer(),
-                      cardWidget(
-                          image: disease,
-                          text: "Common Disses",
-                          context: context,
-                          pageName: const DogCommonDisses())
-                    ],
-                  )),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (userRole == VET_ROLE)
+                    Obx(() => cardWidget(
+                        image: doctorProfile,
+                        text: "Profile",
+                        context: context,
+                        pageName: _controller.isHaveCompletedProfile.value
+                            ? const ViewVetProfile()
+                            : const NewVetProfile())),
+                  if (userRole != VET_ROLE)
+                    cardWidget(
+                        image: userRole == SELLER_ROLE
+                            ? sellerProfile
+                            : dogpPofile,
+                        text: "Profile",
+                        context: context,
+                        pageName: const DogProfile()),
+                  const Spacer(),
+                  cardWidget(
+                      image: disease,
+                      text: "Common Disses",
+                      context: context,
+                      pageName: const DogCommonDisses())
+                ],
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   cardWidget(
                       image: breeders,
-                      text: "Breeders & Selllers",
+                      text: "Breeders \n& Selllers",
                       context: context,
                       pageName: const BreedersAndSellers()),
                   const Spacer(),
                   cardWidget(
                       image: clinic,
-                      text: "Veterinarian",
+                      text: "Make \nAppointment",
                       context: context,
                       pageName: const Veterinarian())
                 ],
@@ -107,11 +110,12 @@ class Home extends StatelessWidget {
                   width: 35.w,
                   height: 20.h,
                   child: Padding(
-                    padding: const EdgeInsets.all(14.0),
+                    padding:
+                        const EdgeInsets.only(left: 14.0, right: 14, top: 14),
                     child: Image.asset(image, fit: BoxFit.cover),
                   )),
               SizedBox(
-                height: 2.h,
+                height: 1.h,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 14.0),

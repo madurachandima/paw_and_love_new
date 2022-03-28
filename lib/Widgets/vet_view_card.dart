@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
-import 'package:paw_and_love/model/vet_clinic_model.dart';
+import 'package:paw_and_love/model/vet/vet_clinic_model.dart';
+import 'package:paw_and_love/screens/users/appointment_clinic.dart';
 import 'package:sizer/sizer.dart';
 
 class VetViewCard extends StatelessWidget {
@@ -18,7 +19,9 @@ class VetViewCard extends StatelessWidget {
         width: double.infinity,
         child: InkWell(
           onTap: () {
-            // Get.to(() => DogSymptomView(dogIllnessModel: vetprofileModel));
+            Get.to(() => AppointmentClinic(
+                  clinicModel: vetClinicModel!,
+                ));
           },
           child: Padding(
             padding: const EdgeInsets.all(10.0),

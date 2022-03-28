@@ -85,6 +85,18 @@ class Register extends StatelessWidget {
                       _registrationController.emailController,
                   isPass: false,
                   isReadOnly: false,
+                  lableText: "Phone Number ",
+                  hintText: " Please Input Phone Number",
+                  textInputType: TextInputType.phone,
+                  textColor: Colors.white),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: CustomeTextInputField(
+                  textEditingController:
+                      _registrationController.emailController,
+                  isPass: false,
+                  isReadOnly: false,
                   lableText: "Email Address ",
                   hintText: " Please Input Email Address",
                   textInputType: TextInputType.emailAddress,

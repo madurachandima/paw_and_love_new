@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:paw_and_love/Services/dog_profile_methods.dart';
-import 'package:paw_and_love/model/vaccination_date_model.dart';
+import 'package:paw_and_love/model/vet/vaccination_date_model.dart';
 
 class DogProfileViewController extends GetxController with DogProfileMethod {
   var optionalVaccines = [].obs;

@@ -9,6 +9,7 @@ class RegistrationController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController conPasswordController = TextEditingController();
@@ -20,6 +21,7 @@ class RegistrationController extends GetxController {
   @override
   void dispose() {
     usernameController.dispose();
+    passwordController.dispose();
     emailController.dispose();
     passwordController.dispose();
     conPasswordController.dispose();
@@ -28,12 +30,15 @@ class RegistrationController extends GetxController {
 
   Future userRegistration() async {
     String? _username = usernameController.text;
+    String? _phoneNumber = phoneController.text;
     String? _email = emailController.text;
     String? _password = passwordController.text;
     String? _conPassword = conPasswordController.text;
 
     if (!GetUtils.isUsername(_username)) {
       return "Username is Empty";
+    } else if (!GetUtils.isPhoneNumber(_phoneNumber)) {
+      return "Phone number is invalid or Empyt";
     } else if (!GetUtils.isEmail(_email)) {
       return "Email address is invalid or Empyt";
     } else if (_password == "" || _password.length < 6) {
@@ -53,6 +58,7 @@ class RegistrationController extends GetxController {
       await _firestore.collection('users').doc(_cred.user!.uid).set({
         'uid': _cred.user!.uid,
         'username': _username,
+        'phone_number': _phoneNumber,
         'email': _email,
         'role': selectedRole.value
       });

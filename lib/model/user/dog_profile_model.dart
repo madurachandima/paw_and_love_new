@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:paw_and_love/model/vaccination_date_model.dart';
+import 'package:paw_and_love/model/vet/vaccination_date_model.dart';
 
 class DogProfileModel {
   final String? dogName;

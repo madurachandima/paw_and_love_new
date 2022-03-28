@@ -76,3 +76,12 @@ openBrowser(String url) async {
         title: "Error");
   }
 }
+
+returnFormatedDate(beforeWord) {
+  String word = beforeWord;
+  List splitWord = word.split(':');
+  if (splitWord[1].toString().length == 1) {
+    return "${splitWord[0]}:${splitWord[1] + 0.toString()}";
+  }
+  return word;
+}

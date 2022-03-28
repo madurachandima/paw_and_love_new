@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Widgets/dog_symptom_view.dart';
-import 'package:paw_and_love/model/dog_illness_model.dart';
+import 'package:paw_and_love/model/user/dog_illness_model.dart';
 import 'package:sizer/sizer.dart';
 
 class DogSymptomsViewCard extends StatelessWidget {

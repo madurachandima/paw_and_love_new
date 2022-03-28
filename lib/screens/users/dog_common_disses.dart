@@ -7,8 +7,8 @@ import 'package:paw_and_love/Widgets/chat_bot_view.dart';
 import 'package:paw_and_love/Widgets/customeCircularProgress.dart';
 import 'package:paw_and_love/Widgets/dog_symptoms_view_card.dart';
 import 'package:paw_and_love/Widgets/search_textfield.dart';
-import 'package:paw_and_love/controller/dog_common_disses_controller.dart';
-import 'package:paw_and_love/model/dog_illness_model.dart';
+import 'package:paw_and_love/controller/users/dog_common_disses_controller.dart';
+import 'package:paw_and_love/model/user/dog_illness_model.dart';
 import 'package:sizer/sizer.dart';
 
 class DogCommonDisses extends StatelessWidget {

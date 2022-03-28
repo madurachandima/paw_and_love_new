@@ -2,6 +2,8 @@ const String USER_ROLE = "User";
 const String VET_ROLE = "Vet";
 const String SELLER_ROLE = "Seller";
 
+const String ERROR_MESSAGE = "Somthing went to wrong";
+
 List<String> dogBreeds = [
   "Retrievers (Labrador)",
   "French Bulldogs",

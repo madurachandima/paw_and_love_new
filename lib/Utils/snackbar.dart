@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 flutterToastMessage(
     {required String title,
     required String message,
-    required SnackPosition position,
+    SnackPosition position = SnackPosition.TOP,
     required Color backgroundColor}) {
   Get.snackbar(title, message,
       snackPosition: position,

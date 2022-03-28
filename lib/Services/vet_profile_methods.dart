@@ -2,12 +2,12 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Services/storage_methods.dart';
+import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/search_quary_builder.dart';
-import 'package:paw_and_love/model/vet_clinic_model.dart';
-import 'package:paw_and_love/model/vet_profile_model.dart';
+import 'package:paw_and_love/model/vet/vet_clinic_model.dart';
+import 'package:paw_and_love/model/vet/vet_profile_model.dart';
 
 class VetProfileMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -56,7 +56,7 @@ class VetProfileMethods {
     } on FirebaseException catch (err) {
       return err.message.toString();
     } catch (e) {
-      return "Somthing went to wrong";
+      return ERROR_MESSAGE;
     }
     return "success";
   }
@@ -110,7 +110,7 @@ class VetProfileMethods {
     } on FirebaseException catch (err) {
       return err.message.toString();
     } catch (e) {
-      return "Somthing went to wrong";
+      return ERROR_MESSAGE;
     }
 
     return "success";

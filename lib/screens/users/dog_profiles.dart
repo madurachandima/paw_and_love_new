@@ -1,11 +1,15 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
+import 'package:paw_and_love/Utils/const.dart';
+import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Widgets/dog_profile_circuler_avatar.dart';
 import 'package:paw_and_love/controller/home_controller.dart';
+import 'package:paw_and_love/screens/login.dart';
 import 'package:paw_and_love/screens/users/dog_add_new_profile.dart';
 
 import 'package:sizer/sizer.dart';
@@ -16,6 +20,23 @@ class DogProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController _controller = Get.find();
+    _signout() async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        Get.off(() => const Login());
+      } on FirebaseException catch (err) {
+        flutterToastMessage(
+            title: "Error",
+            message: err.message!,
+            backgroundColor: ColorConfig.errorRed);
+      } catch (e) {
+        flutterToastMessage(
+            title: "Error",
+            message: ERROR_MESSAGE,
+            backgroundColor: ColorConfig.errorRed);
+      }
+    }
+
     return Scaffold(
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -36,6 +57,23 @@ class DogProfile extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        AwesomeDialog(
+                                context: context,
+                                animType: AnimType.BOTTOMSLIDE,
+                                dialogType: DialogType.WARNING,
+                                title: 'Log out',
+                                desc: 'Are you sure you want to Log out?',
+                                btnCancelOnPress: () {},
+                                btnCancelText: "No",
+                                btnOkOnPress: () => _signout(),
+                                btnOkText: "Yes")
+                            .show();
+                      },
+                      icon: const Icon(Icons.logout))
+                ],
               ),
             ];
           },

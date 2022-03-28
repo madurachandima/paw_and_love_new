@@ -3,7 +3,7 @@ import 'package:paw_and_love/Config/assets_path.dart';
 
 import 'package:paw_and_love/Utils/styles.dart';
 import 'package:paw_and_love/Utils/utill.dart';
-import 'package:paw_and_love/model/dog_illness_model.dart';
+import 'package:paw_and_love/model/user/dog_illness_model.dart';
 
 import 'package:sizer/sizer.dart';
 

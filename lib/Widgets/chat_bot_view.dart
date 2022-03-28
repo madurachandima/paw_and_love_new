@@ -4,7 +4,7 @@ import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Widgets/customeCircularProgress.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
-import 'package:paw_and_love/controller/dog_common_disses_controller.dart';
+import 'package:paw_and_love/controller/users/dog_common_disses_controller.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';

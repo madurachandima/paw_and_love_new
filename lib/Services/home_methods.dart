@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paw_and_love/Utils/utill.dart';
-import 'package:paw_and_love/model/dog_profile_model.dart';
-import 'package:paw_and_love/model/vaccination_date_model.dart';
-import 'package:paw_and_love/model/vaccination_model.dart';
+import 'package:paw_and_love/model/user/dog_profile_model.dart';
+import 'package:paw_and_love/model/vet/vaccination_date_model.dart';
+import 'package:paw_and_love/model/vet/vaccination_model.dart';
 import 'package:intl/intl.dart';
-import 'package:paw_and_love/model/vet_profile_model.dart';
+import 'package:paw_and_love/model/vet/vet_profile_model.dart';
 
 class HomeMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

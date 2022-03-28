@@ -6,13 +6,17 @@ import 'package:get/get.dart';
 import 'package:paw_and_love/Config/assets_path.dart';
 
 import 'package:paw_and_love/Config/color_config.dart';
+import 'package:paw_and_love/Utils/const.dart';
+import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Widgets/vet_profile_circuler_avatar.dart';
 import 'package:paw_and_love/controller/home_controller.dart';
+import 'package:paw_and_love/screens/login.dart';
 import 'package:paw_and_love/screens/vet/add_new_clinic.dart';
 
 import 'package:sizer/sizer.dart';
 
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class ViewVetProfile extends StatelessWidget {
   const ViewVetProfile({Key? key}) : super(key: key);
@@ -20,6 +24,23 @@ class ViewVetProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController _homeController = Get.find();
+    _signout() async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        Get.off(() => const Login());
+      } on FirebaseException catch (err) {
+        flutterToastMessage(
+            title: "Error",
+            message: err.message!,
+            backgroundColor: ColorConfig.errorRed);
+      } catch (e) {
+        flutterToastMessage(
+            title: "Error",
+            message: ERROR_MESSAGE,
+            backgroundColor: ColorConfig.errorRed);
+      }
+    }
+
     return Scaffold(
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -30,6 +51,23 @@ class ViewVetProfile extends StatelessWidget {
                 expandedHeight: 40.h,
                 floating: false,
                 pinned: true,
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        AwesomeDialog(
+                                context: context,
+                                animType: AnimType.BOTTOMSLIDE,
+                                dialogType: DialogType.WARNING,
+                                title: 'Log out',
+                                desc: 'Are you sure you want to Log out?',
+                                btnCancelOnPress: () {},
+                                btnCancelText: "No",
+                                btnOkOnPress: () => _signout(),
+                                btnOkText: "Yes")
+                            .show();
+                      },
+                      icon: const Icon(Icons.logout))
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                     background: Obx(() => Stack(
                           alignment: Alignment.center,

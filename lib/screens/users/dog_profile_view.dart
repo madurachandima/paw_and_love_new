@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
 import 'package:paw_and_love/Utils/utill.dart';
-import 'package:paw_and_love/Widgets/dog_vaccine_notification.dart';
+import 'package:paw_and_love/Widgets/user_widgets/dog_vaccine_notification.dart';
 import 'package:paw_and_love/controller/users/dog_profile_view_controllr.dart';
 import 'package:sizer/sizer.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';

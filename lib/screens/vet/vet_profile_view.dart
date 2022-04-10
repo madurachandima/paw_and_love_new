@@ -8,7 +8,7 @@ import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
-import 'package:paw_and_love/Widgets/vet_profile_circuler_avatar.dart';
+import 'package:paw_and_love/Widgets/vet_widgets/vet_profile_circuler_avatar.dart';
 import 'package:paw_and_love/controller/home_controller.dart';
 import 'package:paw_and_love/screens/login.dart';
 import 'package:paw_and_love/screens/vet/add_new_clinic.dart';

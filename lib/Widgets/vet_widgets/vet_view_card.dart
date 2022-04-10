@@ -7,7 +7,8 @@ import 'package:sizer/sizer.dart';
 
 class VetViewCard extends StatelessWidget {
   final VetClinicModel? vetClinicModel;
-  const VetViewCard({Key? key, this.vetClinicModel}) : super(key: key);
+  final String? clinicId;
+  const VetViewCard({Key? key, this.vetClinicModel,this.clinicId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class VetViewCard extends StatelessWidget {
           onTap: () {
             Get.to(() => AppointmentClinic(
                   clinicModel: vetClinicModel!,
+              clinicId: clinicId!,
                 ));
           },
           child: Padding(

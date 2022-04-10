@@ -12,34 +12,58 @@ import 'package:sizer/sizer.dart';
 
 class AppointmentClinic extends StatelessWidget {
   final VetClinicModel clinicModel;
-  const AppointmentClinic({Key? key, required this.clinicModel})
+  final String clinicId;
+
+  const AppointmentClinic(
+      {Key? key, required this.clinicModel, required this.clinicId})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    AppoitmentController _controller = Get.put(AppoitmentController());
+    AppointmentController _controller = Get.put(AppointmentController());
     _returnOpenTime() =>
         "Open ${returnFormatedDate(clinicModel.openTimeTo)} To ${returnFormatedDate(clinicModel.closeTime)} (24h Format) ";
 
-    _makeAppitment() async {
-      _controller.isUploading.value = true;
-      String response = await _controller.requestAppoitment(clinicModel.vetId!);
-      if (response != "success") {
-        flutterToastMessage(
-            title: "Error",
-            message: response,
-            position: SnackPosition.TOP,
-            backgroundColor: ColorConfig.errorRed);
-        _controller.isUploading.value = false;
-      } else {
-        flutterToastMessage(
-            title: "Success",
-            message: "User login success",
-            position: SnackPosition.TOP,
-            backgroundColor: ColorConfig.successGreen);
-        _controller.isUploading.value = false;
-        debugPrint("navigate to another screen");
-        // Get.off(() => const MiddleScreen());
+    _pickupDate() async {
+      DateTime? _pickedDate =
+          await getDate(context: context, initialDate: DateTime.now());
+      if (_pickedDate != null) {
+        if (_pickedDate.isBefore(DateTime.now())) {
+          flutterToastMessage(
+              title: "Error",
+              message: "Invalid Date",
+              position: SnackPosition.TOP,
+              backgroundColor: ColorConfig.errorRed);
+        } else {
+          return _pickedDate;
+        }
+      }
+      return "";
+    }
+
+    _makeAppointment() async {
+      var appointmentDate = await _pickupDate();
+      if (appointmentDate != "") {
+        _controller.isUploading.value = true;
+        String response =
+            await _controller.requestAppointment(clinicModel, clinicId,appointmentDate);
+        if (response != "success") {
+          flutterToastMessage(
+              title: "Error",
+              message: response,
+              position: SnackPosition.TOP,
+              backgroundColor: ColorConfig.errorRed);
+          _controller.isUploading.value = false;
+        } else {
+          flutterToastMessage(
+              title: "Success",
+              message: "Request send",
+              position: SnackPosition.TOP,
+              backgroundColor: ColorConfig.successGreen);
+          _controller.isUploading.value = false;
+          debugPrint("navigate to another screen");
+          // Get.off(() => const MiddleScreen());
+        }
       }
     }
 
@@ -55,7 +79,7 @@ class AppointmentClinic extends StatelessWidget {
                   flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
                     title: Text(
-                      "Happy Pet Clinic",
+                      clinicModel.clinicName.toString().toUpperCase(),
                       style:
                           TextStyle(color: ColorConfig.white, fontSize: 20.sp),
                     ),
@@ -240,7 +264,7 @@ class AppointmentClinic extends StatelessWidget {
                             backgroundColor: ColorConfig.orange,
                             buttonText: "Request Appointment",
                             getxController: _controller,
-                            callbackFunction: () => _makeAppitment())),
+                            callbackFunction: () => _makeAppointment())),
                   )
                 ]))
               ],

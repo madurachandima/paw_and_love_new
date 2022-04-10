@@ -5,7 +5,7 @@ import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Widgets/chat_bot_view.dart';
 import 'package:paw_and_love/Widgets/customeCircularProgress.dart';
-import 'package:paw_and_love/Widgets/dog_symptoms_view_card.dart';
+import 'package:paw_and_love/Widgets/user_widgets/dog_symptoms_view_card.dart';
 import 'package:paw_and_love/Widgets/search_textfield.dart';
 import 'package:paw_and_love/controller/users/dog_common_disses_controller.dart';
 import 'package:paw_and_love/model/user/dog_illness_model.dart';

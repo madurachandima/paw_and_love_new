@@ -7,6 +7,7 @@ import 'package:paw_and_love/controller/home_controller.dart';
 import 'package:paw_and_love/screens/breeders_&_sellers.dart';
 import 'package:paw_and_love/screens/users/dog_common_disses.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
+import 'package:paw_and_love/screens/vet/approved_appointment.dart';
 import 'package:paw_and_love/screens/vet/vet_new_profile.dart';
 import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
 import 'package:paw_and_love/screens/make_appointment.dart';
@@ -77,11 +78,19 @@ class Home extends StatelessWidget {
                       context: context,
                       pageName: const BreedersAndSellers()),
                   const Spacer(),
+                  if (userRole != VET_ROLE)
                   cardWidget(
                       image: clinic,
                       text: "Make \nAppointment",
                       context: context,
-                      pageName: const Veterinarian())
+                      pageName: const Veterinarian()),
+
+                  if (userRole == VET_ROLE)
+                  cardWidget(
+                      image: clinic,
+                      text: "Approved \nAppointment",
+                      context: context,
+                      pageName: const ApprovedAppointment())
                 ],
               )
             ]),

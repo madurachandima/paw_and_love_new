@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Widgets/search_textfield.dart';
-import 'package:paw_and_love/Widgets/vet_view_card.dart';
+import 'package:paw_and_love/Widgets/vet_widgets/vet_view_card.dart';
 import 'package:paw_and_love/controller/users/appitment_controller.dart';
 import 'package:paw_and_love/model/vet/vet_clinic_model.dart';
 
@@ -12,7 +12,7 @@ class Veterinarian extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppoitmentController _controller = Get.put(AppoitmentController());
+    AppointmentController _controller = Get.put(AppointmentController());
 
     return Scaffold(
       appBar: AppBar(),
@@ -63,6 +63,8 @@ class Veterinarian extends StatelessWidget {
                         itemBuilder: (context, index) => VetViewCard(
                           vetClinicModel: VetClinicModel.fromSnap(
                               snapshot.data!.docs[index]),
+                          clinicId: snapshot.data!.docs[index].id,
+
                         ),
                       ),
                     );

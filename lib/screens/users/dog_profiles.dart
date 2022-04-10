@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
-import 'package:paw_and_love/Widgets/dog_profile_circuler_avatar.dart';
+import 'package:paw_and_love/Widgets/user_widgets/dog_profile_circuler_avatar.dart';
 import 'package:paw_and_love/controller/home_controller.dart';
 import 'package:paw_and_love/screens/login.dart';
 import 'package:paw_and_love/screens/users/dog_add_new_profile.dart';

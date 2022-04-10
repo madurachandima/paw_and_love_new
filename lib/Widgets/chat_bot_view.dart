@@ -25,7 +25,7 @@ class ChatBotView extends StatelessWidget {
     return AlertDialog(
       title: Row(
         children: [
-          const Text('AlertDialog Title'),
+          const Text('Chat bot'),
           const Spacer(),
           IconButton(
               onPressed: () {

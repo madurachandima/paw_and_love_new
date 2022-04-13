@@ -82,7 +82,7 @@ class Register extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: CustomeTextInputField(
                   textEditingController:
-                      _registrationController.emailController,
+                      _registrationController.phoneController,
                   isPass: false,
                   isReadOnly: false,
                   lableText: "Phone Number ",

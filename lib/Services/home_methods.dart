@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paw_and_love/Utils/utill.dart';
+import 'package:paw_and_love/model/seller/seller_profile_model.dart';
 import 'package:paw_and_love/model/user/dog_profile_model.dart';
 import 'package:paw_and_love/model/vet/vaccination_date_model.dart';
 import 'package:paw_and_love/model/vet/vaccination_model.dart';
@@ -112,6 +113,22 @@ class HomeMethods {
 
       VetProfileModel vetProfileModel = VetProfileModel.fromSnap(snap.docs[0]);
       return vetProfileModel;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future getSellerProfile() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snap = await _firestore
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("seller_profile")
+          .get();
+
+      SellerProfileModel sellerProfileModel =
+          SellerProfileModel.fromSnap(snap.docs[0]);
+      return sellerProfileModel;
     } catch (e) {
       return null;
     }

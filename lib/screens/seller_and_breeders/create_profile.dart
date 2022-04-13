@@ -2,34 +2,32 @@ import 'dart:io';
 
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:group_radio_button/group_radio_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Config/font_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
-import 'package:paw_and_love/Widgets/custome_button.dart';
-import 'package:paw_and_love/controller/vet/vet_profile_controller.dart';
-import 'package:paw_and_love/screens/vet/vet_profile_view.dart';
-import 'package:sizer/sizer.dart';
 import 'package:paw_and_love/Utils/utill.dart';
+import 'package:paw_and_love/Widgets/custome_button.dart';
 import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
+import 'package:paw_and_love/controller/seller/seller_profile_controller.dart';
+import 'package:paw_and_love/screens/seller_and_breeders/view_profile.dart';
+import 'package:sizer/sizer.dart';
 
-class NewVetProfile extends StatelessWidget {
-  const NewVetProfile({Key? key}) : super(key: key);
+class CreateSellerProfile extends StatelessWidget {
+  const CreateSellerProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    VetProfileController _vetProfileController =
-        Get.put(VetProfileController());
+    SellerProfileController _controller = Get.put(SellerProfileController());
 
-    createNewVetProfile() async {
-      _vetProfileController.isUploading.value = true;
-      var result = await _vetProfileController.saveVetProfile();
+    createNewSeller() async {
+      _controller.isUploading.value = true;
+      var result = await _controller.createSellerProfile();
 
       if (result != "success") {
         flutterToastMessage(
@@ -37,23 +35,23 @@ class NewVetProfile extends StatelessWidget {
             message: result.toString(),
             position: SnackPosition.TOP,
             backgroundColor: ColorConfig.errorRed);
-        _vetProfileController.isUploading.value = false;
+        _controller.isUploading.value = false;
       } else {
         flutterToastMessage(
             title: "Success",
             message: "Profile is created",
             position: SnackPosition.TOP,
             backgroundColor: ColorConfig.successGreen);
-        Get.off(() => const ViewVetProfile());
-        _vetProfileController.isUploading.value = false;
+        Get.off(() => const ViewSellerProfile());
+        _controller.isUploading.value = false;
       }
     }
 
     void selectImage() async {
       var list = await pickImage(ImageSource.gallery);
       if (list != null) {
-        _vetProfileController.profileImage.value = list[1].toString();
-        _vetProfileController.profileImageByte = list[0];
+        _controller.profileImage.value = list[1].toString();
+        _controller.profileImageByte = list[0];
       }
     }
 
@@ -75,14 +73,13 @@ class NewVetProfile extends StatelessWidget {
                         alignment: Alignment.center,
                         fit: StackFit.expand,
                         children: [
-                          _vetProfileController.profileImage.isEmpty
+                          _controller.profileImage.isEmpty
                               ? Image.asset(
-                                  doctorProfile,
+                                  sellerProfile,
                                   fit: BoxFit.cover,
                                 )
                               : Image.file(
-                                  File(
-                                      _vetProfileController.profileImage.value),
+                                  File(_controller.profileImage.value),
                                   fit: BoxFit.cover,
                                 ),
                           Positioned(
@@ -110,8 +107,7 @@ class NewVetProfile extends StatelessWidget {
                           left: 20, right: 20, top: 20, bottom: 10),
                       child: CustomeTextInputField(
                           isReadOnly: false,
-                          textEditingController:
-                              _vetProfileController.vetNameController,
+                          textEditingController: _controller.nameController,
                           isPass: false,
                           hintText: "Your Name",
                           lableText: "Please Enter Your Name",
@@ -124,7 +120,7 @@ class NewVetProfile extends StatelessWidget {
                       child: CustomeTextInputField(
                           isReadOnly: false,
                           textEditingController:
-                              _vetProfileController.vetPhoneNumberController,
+                              _controller.phoneNumberController,
                           isPass: false,
                           hintText: "Phone Number",
                           lableText: "Please Enter Phone Number",
@@ -152,7 +148,7 @@ class NewVetProfile extends StatelessWidget {
                             dropdownSearchBaseStyle: TextStyle(
                                 color: ColorConfig.orange, fontSize: 13.sp),
                             onChanged: (value) =>
-                                _vetProfileController.city = value.toString(),
+                                _controller.city = value.toString(),
                             dropdownSearchDecoration: InputDecoration(
                               labelText: "Please Select The City",
                               labelStyle: TextStyle(
@@ -194,8 +190,7 @@ class NewVetProfile extends StatelessWidget {
                           left: 20, right: 20, top: 20, bottom: 10),
                       child: CustomeTextInputField(
                           isReadOnly: false,
-                          textEditingController:
-                              _vetProfileController.aboutVetController,
+                          textEditingController: _controller.aboutController,
                           isPass: false,
                           hintText: "About you",
                           lableText: "Please Enter About You",
@@ -203,16 +198,30 @@ class NewVetProfile extends StatelessWidget {
                           textColor: ColorConfig.orange),
                     ),
 
+                    // Obx(() => RadioGroup<String>.builder(
+                    //       horizontalAlignment: MainAxisAlignment.spaceEvenly,
+                    //       direction: Axis.horizontal,
+                    //       textStyle: const TextStyle(
+                    //         color: ColorConfig.orange,
+                    //       ),
+                    //       activeColor: ColorConfig.darkBlue,
+                    //       groupValue: _controller.selectedType.value,
+                    //       onChanged: (value) =>
+                    //           _controller.selectedType.value = value.toString(),
+                    //       items: _controller.sellerTypes,
+                    //       itemBuilder: (item) => RadioButtonBuilder(
+                    //         item,
+                    //       ),
+                    //     )),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: CustomeButton(
-                        getxController: _vetProfileController,
+                        getxController: _controller,
                         buttonText: "Create Profile",
-                        callbackFunction:
-                            _vetProfileController.isUploading.value
-                                ? null
-                                : createNewVetProfile,
+                        callbackFunction: _controller.isUploading.value
+                            ? null
+                            : createNewSeller,
                         backgroundColor: ColorConfig.orange,
                       ),
                     )

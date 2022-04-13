@@ -13,6 +13,7 @@ class SearchTextField extends StatelessWidget {
   var callbackFunction;
   var onTextChange;
   final prefixIcon;
+
   SearchTextField(
       {Key? key,
       required this.textEditingController,
@@ -20,7 +21,7 @@ class SearchTextField extends StatelessWidget {
       required this.lableText,
       required this.textInputType,
       required this.textColor,
-      required this.callbackFunction,
+      this.callbackFunction,
       required this.onTextChange,
       this.prefixIcon = Icons.search})
       : super(key: key);

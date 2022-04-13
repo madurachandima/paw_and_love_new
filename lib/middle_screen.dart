@@ -30,7 +30,7 @@ class _MiddleScreenState extends State<MiddleScreen> {
   @override
   Widget build(BuildContext context) {
     if (userRole != "") {
-      return BottomNavigationbarHandler(userRole: userRole);
+      return BottomNavigationbarHandler(role: userRole);
     }
     return CustomeCircularProgress();
   }

@@ -59,7 +59,8 @@ pickImage(ImageSource source) async {
   }
 }
 
-openBrowser(String url) async {
+
+urlLauncher(String url) async {
   try {
     if (!await launch(url)) {
       flutterToastMessage(

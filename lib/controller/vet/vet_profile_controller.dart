@@ -8,6 +8,7 @@ import 'package:paw_and_love/Utils/const.dart';
 class VetProfileController extends GetxController {
   TextEditingController vetNameController = TextEditingController();
   TextEditingController vetPhoneNumberController = TextEditingController();
+  TextEditingController aboutVetController=TextEditingController();
 
   TextEditingController clinicNameController = TextEditingController();
   TextEditingController clinicAddressController = TextEditingController();
@@ -31,8 +32,13 @@ class VetProfileController extends GetxController {
     super.onInit();
   }
 
-  saveVetProfile() {
-    return "";
+  saveVetProfile() async {
+    return await VetProfileMethods().createNewVetprofile(
+        vetName: vetNameController.text,
+        phoneNumber: vetPhoneNumberController.text,
+        city: city,
+        aboutVet: aboutVetController.text,
+        profileImageByte: profileImageByte);
   }
 
   addNewClinic() async {

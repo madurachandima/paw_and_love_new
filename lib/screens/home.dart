@@ -4,7 +4,10 @@ import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Utils/const.dart';
 
 import 'package:paw_and_love/controller/home_controller.dart';
-import 'package:paw_and_love/screens/breeders_&_sellers.dart';
+import 'package:paw_and_love/screens/users/item_sellers.dart';
+import 'package:paw_and_love/screens/seller_and_breeders/create_profile.dart';
+import 'package:paw_and_love/screens/seller_and_breeders/seller_dashboard.dart';
+import 'package:paw_and_love/screens/seller_and_breeders/view_profile.dart';
 import 'package:paw_and_love/screens/users/dog_common_disses.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:paw_and_love/screens/vet/approved_appointment.dart';
@@ -15,8 +18,9 @@ import 'package:paw_and_love/screens/make_appointment.dart';
 import 'package:sizer/sizer.dart';
 
 class Home extends StatelessWidget {
-  final String? userRole;
-  const Home({Key? key, required this.userRole}) : super(key: key);
+  final String? role;
+
+  const Home({Key? key, required this.role}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (userRole == VET_ROLE)
+                  if (role == VET_ROLE)
                     Obx(() => cardWidget(
                         image: doctorProfile,
                         text: "Profile",
@@ -52,14 +56,20 @@ class Home extends StatelessWidget {
                         pageName: _controller.isHaveCompletedProfile.value
                             ? const ViewVetProfile()
                             : const NewVetProfile())),
-                  if (userRole != VET_ROLE)
+                  if (role == USER_ROLE)
                     cardWidget(
-                        image: userRole == SELLER_ROLE
-                            ? sellerProfile
-                            : dogpPofile,
+                        image: dogpPofile,
                         text: "Profile",
                         context: context,
                         pageName: const DogProfile()),
+                  if (role == SELLER_ROLE)
+                    Obx(() => cardWidget(
+                        image: sellerProfile,
+                        text: "Profile",
+                        context: context,
+                        pageName: _controller.isHaveCompletedProfile.value
+                            ? const ViewSellerProfile()
+                            : const CreateSellerProfile())),
                   const Spacer(),
                   cardWidget(
                       image: disease,
@@ -72,25 +82,30 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  cardWidget(
-                      image: breeders,
-                      text: "Breeders \n& Selllers",
-                      context: context,
-                      pageName: const BreedersAndSellers()),
+                  role == SELLER_ROLE
+                      ? cardWidget(
+                          image: breeders,
+                          text: "Dashboard",
+                          context: context,
+                          pageName: const Dashboard())
+                      : cardWidget(
+                          image: breeders,
+                          text: "Item \nSellers",
+                          context: context,
+                          pageName: const ItemSellers()),
                   const Spacer(),
-                  if (userRole != VET_ROLE)
-                  cardWidget(
-                      image: clinic,
-                      text: "Make \nAppointment",
-                      context: context,
-                      pageName: const Veterinarian()),
-
-                  if (userRole == VET_ROLE)
-                  cardWidget(
-                      image: clinic,
-                      text: "Approved \nAppointment",
-                      context: context,
-                      pageName: const ApprovedAppointment())
+                  if (role != VET_ROLE)
+                    cardWidget(
+                        image: clinic,
+                        text: "Make \nAppointment",
+                        context: context,
+                        pageName: const Veterinarian()),
+                  if (role == VET_ROLE)
+                    cardWidget(
+                        image: clinic,
+                        text: "Approved \nAppointment",
+                        context: context,
+                        pageName: const ApprovedAppointment())
                 ],
               )
             ]),

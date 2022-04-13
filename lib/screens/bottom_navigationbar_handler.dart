@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/screens/home.dart';
+import 'package:paw_and_love/screens/seller_and_breeders/requested_purched_item.dart';
 import 'package:paw_and_love/screens/users/dog_profiles.dart';
 import 'package:paw_and_love/screens/users/user_requested_appointments.dart';
 import 'package:paw_and_love/screens/vet/appointmentRequest.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class BottomNavigationbarHandler extends StatelessWidget {
-  final String? userRole;
+  final String? role;
 
-  const BottomNavigationbarHandler({Key? key, required this.userRole})
+  const BottomNavigationbarHandler({Key? key, required this.role})
       : super(key: key);
 
   @override
@@ -21,10 +22,12 @@ class BottomNavigationbarHandler extends StatelessWidget {
 
     List<Widget> _buildScreens() {
       return [
-        Home(userRole: userRole),
-        userRole == USER_ROLE
+        Home(role: role),
+        role == USER_ROLE
             ? const UserRequestedAppointments()
-            : const AppointmentRequest()
+            : role == SELLER_ROLE
+                ? const RequestedPurchasedItem()
+                : const AppointmentRequest(),
       ];
     }
 
@@ -48,7 +51,7 @@ class BottomNavigationbarHandler extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorConfig.white,
       appBar: AppBar(),
-      body: Home(userRole: userRole),
+      body: Home(role: role),
       bottomNavigationBar: PersistentTabView(
         context,
         controller: tabController,

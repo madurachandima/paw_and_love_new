@@ -11,7 +11,9 @@ class CustomeTextInputField extends StatelessWidget {
   final Color textColor;
   final bool isReadOnly;
   final bool isMultyLineText;
+  final bool isEnableInputAction;
   var callbackFunction;
+  var onSubmitCallbackFunction;
 
   CustomeTextInputField(
       {Key? key,
@@ -23,7 +25,9 @@ class CustomeTextInputField extends StatelessWidget {
       required this.textColor,
       required this.isReadOnly,
       this.isMultyLineText = false,
-      this.callbackFunction})
+      this.callbackFunction,
+      this.onSubmitCallbackFunction,
+      this.isEnableInputAction = false})
       : super(key: key);
 
   @override
@@ -48,8 +52,19 @@ class CustomeTextInputField extends StatelessWidget {
           callbackFunction();
         }
       },
+      onSubmitted: (string) {
+        // print(string);
+        if (onSubmitCallbackFunction != null) {
+          onSubmitCallbackFunction(string);
+        }
+      },
+      // textInputAction: isMultyLineText
+      //     ? TextInputAction.newline
+      //     : isEnableInputAction
+      //         ? TextInputAction.newline
+      //         : TextInputAction.none,
       textInputAction:
-          isMultyLineText ? TextInputAction.newline : TextInputAction.none,
+          isMultyLineText ? TextInputAction.newline : TextInputAction.done,
       minLines: 1,
       maxLines: isMultyLineText ? 5 : 1,
       readOnly: isReadOnly,

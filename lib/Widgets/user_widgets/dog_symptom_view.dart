@@ -191,7 +191,7 @@ class DogSymptomView extends StatelessWidget {
                             margin: const EdgeInsets.symmetric(vertical: 2),
                             child: InkWell(
                               onTap: () {
-                                openBrowser(dogIllnessModel.source);
+                                urlLauncher(dogIllnessModel.source);
                               },
                               child:
                                   Text("Click here", style: defaultTextStyle()),

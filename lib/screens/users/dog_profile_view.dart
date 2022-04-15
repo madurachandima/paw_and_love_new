@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -60,7 +61,7 @@ class ViewDogProfile extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     snap['dog_name'],
-                    style:const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   background: CachedNetworkImage(
                     fit: BoxFit.cover,
@@ -86,16 +87,11 @@ class ViewDogProfile extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController:
-                          TextEditingController(text: snap['dog_breed']),
-                      isPass: false,
-                      hintText: "Dog Name",
-                      lableText: "Please Enter Dog Name",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['dog_breed'],
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 const Padding(
                   padding:
@@ -107,16 +103,11 @@ class ViewDogProfile extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: snap['dog_gender'].toString().toUpperCase()),
-                      isPass: false,
-                      hintText: "Dog Owner Name",
-                      lableText: "Please Enter Dog Owner Name",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['dog_gender'].toString().toUpperCase(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 const Padding(
                   padding:
@@ -128,18 +119,13 @@ class ViewDogProfile extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: DateFormat.yMMMd()
-                              .format(snap['dog_birthdate'].toDate())
-                              .toString()),
-                      isPass: false,
-                      hintText: "Dog Owner Name",
-                      lableText: "Please Enter Dog Owner Name",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    DateFormat.yMMMd()
+                        .format(snap['dog_birthdate'].toDate())
+                        .toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 const Padding(
                   padding:
@@ -151,17 +137,11 @@ class ViewDogProfile extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: convertTimestampDate(snap['dog_birthdate'])
-                              .toString()),
-                      isPass: false,
-                      hintText: "Dog Owner Name",
-                      lableText: "Please Enter Dog Owner Name",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    "${convertTimestampDate(snap['dog_birthdate']).toString()} Weeks",
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +172,7 @@ class ViewDogProfile extends StatelessWidget {
                               top: 20,
                             ),
                             child: Text(
-                              "Recomonded Vaccination Details",
+                              "Recommended Vaccination Details",
                               style: TextStyle(
                                   color: ColorConfig.orange, fontSize: 14.sp),
                             ),
@@ -233,10 +213,23 @@ class ViewDogProfile extends StatelessWidget {
                                               Obx(() => Flexible(
                                                     flex: 5,
                                                     fit: FlexFit.tight,
-                                                    child:
-                                                        CustomeTextInputField(
-                                                            callbackFunction:
-                                                                () async {
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                            tryConverttoDate(
+                                                                _controller
+                                                                        .recomondedVaccines[
+                                                                            index]
+                                                                        .entries
+                                                                        .first
+                                                                        .value[
+                                                                    'dateTime']),
+                                                            style: const TextStyle(
+                                                                color: ColorConfig
+                                                                    .textColorDark)),
+                                                        const Spacer(),
+                                                        InkWell(
+                                                            onTap: () async {
                                                               DateTime? selectedDate = await getDate(
                                                                   context:
                                                                       context,
@@ -284,26 +277,13 @@ class ViewDogProfile extends StatelessWidget {
                                                                 }
                                                               }
                                                             },
-                                                            isReadOnly: true,
-                                                            textEditingController: TextEditingController(
-                                                                text: tryConverttoDate(_controller
-                                                                        .recomondedVaccines[
-                                                                            index]
-                                                                        .entries
-                                                                        .first
-                                                                        .value[
-                                                                    'dateTime'])),
-                                                            isPass: false,
-                                                            hintText:
-                                                                "Dog Birth Date",
-                                                            lableText:
-                                                                "Please Select Dog Birth Date",
-                                                            textInputType:
-                                                                TextInputType
-                                                                    .text,
-                                                            textColor:
-                                                                ColorConfig
-                                                                    .orange),
+                                                            child: const Icon(
+                                                              CupertinoIcons
+                                                                  .calendar_circle,
+                                                              size: 35,
+                                                            ))
+                                                      ],
+                                                    ),
                                                   ))
                                             ],
                                           ),
@@ -364,77 +344,78 @@ class ViewDogProfile extends StatelessWidget {
                                               Obx(() => Flexible(
                                                     flex: 5,
                                                     fit: FlexFit.tight,
-                                                    child:
-                                                        CustomeTextInputField(
-                                                            callbackFunction:
-                                                                () async {
-                                                              DateTime? selectedDate = await getDate(
-                                                                  context:
-                                                                      context,
-                                                                  initialDate: DateTime.parse(DateFormat("yyyy-MM-dd").format(DateTime.parse(snap[
-                                                                              'optional_vaccine']
-                                                                          [
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                            tryConverttoDate(
+                                                              _controller
+                                                                      .optionalVaccines[
                                                                           index]
                                                                       .entries
                                                                       .first
                                                                       .value[
-                                                                          'dateTime']
-                                                                      .toDate()
-                                                                      .toString()))));
-
-                                                              if (selectedDate !=
-                                                                  null) {
-                                                                if (selectedDate
-                                                                    .isBefore(
-                                                                        DateTime
-                                                                            .now())) {
-                                                                  _controller.updateOptionalVaccineDate(
-                                                                      id: snap
-                                                                          .id,
-                                                                      newDate:
-                                                                          selectedDate,
-                                                                      vaccineName: snap['optional_vaccine']
-                                                                              [
-                                                                              index]
-                                                                          .entries
-                                                                          .first
-                                                                          .key
-                                                                          .toString());
-                                                                } else {
-                                                                  flutterToastMessage(
-                                                                      title:
-                                                                          "Error",
-                                                                      message:
-                                                                          "Invalid Birthdate",
-                                                                      position:
-                                                                          SnackPosition
-                                                                              .TOP,
-                                                                      backgroundColor:
-                                                                          ColorConfig
-                                                                              .errorRed);
-                                                                }
-                                                              }
-                                                            },
-                                                            isReadOnly: true,
-                                                            textEditingController: TextEditingController(
-                                                                text: tryConverttoDate(_controller
-                                                                        .optionalVaccines[
+                                                                  'dateTime'],
+                                                            ),
+                                                            style: const TextStyle(
+                                                                color: ColorConfig
+                                                                    .textColorDark)),
+                                                        const Spacer(),
+                                                        InkWell(
+                                                          child: const Icon(
+                                                            CupertinoIcons
+                                                                .calendar_circle,
+                                                            size: 35,
+                                                          ),
+                                                          onTap: () async {
+                                                            DateTime? selectedDate = await getDate(
+                                                                context:
+                                                                    context,
+                                                                initialDate: DateTime.parse(DateFormat(
+                                                                        "yyyy-MM-dd")
+                                                                    .format(DateTime.parse(snap['optional_vaccine']
+                                                                            [
                                                                             index]
                                                                         .entries
                                                                         .first
                                                                         .value[
-                                                                    'dateTime'])),
-                                                            isPass: false,
-                                                            hintText:
-                                                                "Dog Birth Date",
-                                                            lableText:
-                                                                "Please Select Dog Birth Date",
-                                                            textInputType:
-                                                                TextInputType
-                                                                    .text,
-                                                            textColor:
-                                                                ColorConfig
-                                                                    .orange),
+                                                                            'dateTime']
+                                                                        .toDate()
+                                                                        .toString()))));
+
+                                                            if (selectedDate !=
+                                                                null) {
+                                                              if (selectedDate
+                                                                  .isBefore(DateTime
+                                                                      .now())) {
+                                                                _controller.updateOptionalVaccineDate(
+                                                                    id: snap.id,
+                                                                    newDate:
+                                                                        selectedDate,
+                                                                    vaccineName: snap['optional_vaccine']
+                                                                            [
+                                                                            index]
+                                                                        .entries
+                                                                        .first
+                                                                        .key
+                                                                        .toString());
+                                                              } else {
+                                                                flutterToastMessage(
+                                                                    title:
+                                                                        "Error",
+                                                                    message:
+                                                                        "Invalid Birthdate",
+                                                                    position:
+                                                                        SnackPosition
+                                                                            .TOP,
+                                                                    backgroundColor:
+                                                                        ColorConfig
+                                                                            .errorRed);
+                                                              }
+                                                            }
+                                                          },
+                                                        )
+                                                      ],
+                                                    ),
                                                   ))
                                             ],
                                           ),

@@ -19,7 +19,7 @@ class UserRequestedAppointments extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(backgroundColor: ColorConfig.white,),
         body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("appointments")

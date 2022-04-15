@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Config/font_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
@@ -63,6 +64,9 @@ class AddNewDogProfile extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
+                backgroundColor: ColorConfig.white,
                 elevation: 0,
                 expandedHeight: 50.h,
                 floating: false,
@@ -77,8 +81,8 @@ class AddNewDogProfile extends StatelessWidget {
                         fit: StackFit.expand,
                         children: [
                           _profileController.profileImage.isEmpty
-                              ? Image.network(
-                                  "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=362&q=80",
+                              ? Image.asset(
+                                  coverImage,
                                   fit: BoxFit.cover,
                                 )
                               : Image.file(
@@ -94,7 +98,7 @@ class AddNewDogProfile extends StatelessWidget {
                               },
                               child: const Icon(
                                 CupertinoIcons.camera_circle,
-                                color: Colors.white60,
+                                color: Colors.black12,
                                 size: 50,
                               ),
                             ),
@@ -329,7 +333,7 @@ class AddNewDogProfile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Please select the vaccine gave to your Dog",
+                              "Please select the vaccines gave to your Dog",
                               style: subHeadingStyle(),
                             ),
                             const Divider(
@@ -338,7 +342,7 @@ class AddNewDogProfile extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: Text("Recomonded Vaccines",
+                              child: Text("Recommended Vaccines",
                                   style: subTopicStyle()),
                             ),
                             Obx(() => ListView.builder(

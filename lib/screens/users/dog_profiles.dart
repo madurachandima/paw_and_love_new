@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:paw_and_love/Config/assets_path.dart';
 import 'package:paw_and_love/Config/color_config.dart';
 import 'package:paw_and_love/Utils/const.dart';
 import 'package:paw_and_love/Utils/snackbar.dart';
@@ -42,8 +43,10 @@ class DogProfile extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 elevation: 0,
-                /* backgroundColor: ColorConfig.darkBlue, */
+                backgroundColor: ColorConfig.white,
                 expandedHeight: 50.h,
                 floating: false,
                 pinned: true,
@@ -52,8 +55,8 @@ class DogProfile extends StatelessWidget {
                   title: const Text(
                     "Dog Profiles",
                   ),
-                  background: Image.network(
-                    "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=362&q=80",
+                  background: Image.asset(
+                    coverImage,
                     fit: BoxFit.cover,
                   ),
                 ),

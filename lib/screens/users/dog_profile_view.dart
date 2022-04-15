@@ -13,6 +13,7 @@ import 'package:paw_and_love/Widgets/custome_text_input_field.dart';
 class ViewDogProfile extends StatelessWidget {
   final snap;
   final List notifications;
+
   const ViewDogProfile(
       {Key? key, required this.snap, required this.notifications})
       : super(key: key);
@@ -25,6 +26,8 @@ class ViewDogProfile extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 actions: [
                   if (notifications.isNotEmpty)
                     Padding(
@@ -57,6 +60,7 @@ class ViewDogProfile extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     snap['dog_name'],
+                    style:const TextStyle(color: Colors.white),
                   ),
                   background: CachedNetworkImage(
                     fit: BoxFit.cover,

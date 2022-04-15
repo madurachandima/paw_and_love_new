@@ -45,8 +45,8 @@ class AppointmentClinic extends StatelessWidget {
       var appointmentDate = await _pickupDate();
       if (appointmentDate != "") {
         _controller.isUploading.value = true;
-        String response =
-            await _controller.requestAppointment(clinicModel, clinicId,appointmentDate);
+        String response = await _controller.requestAppointment(
+            clinicModel, clinicId, appointmentDate);
         if (response != "success") {
           flutterToastMessage(
               title: "Error",
@@ -71,6 +71,8 @@ class AppointmentClinic extends StatelessWidget {
       body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverAppBar(
+                  iconTheme:
+                      const IconThemeData(color: ColorConfig.textColorDark),
                   centerTitle: false,
                   elevation: 0,
                   expandedHeight: 20.h,
@@ -116,7 +118,7 @@ class AppointmentClinic extends StatelessWidget {
                       top: 10,
                     ),
                     child: Text(
-                      "Locaton",
+                      "Location",
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),

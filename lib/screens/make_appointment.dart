@@ -15,7 +15,10 @@ class Veterinarian extends StatelessWidget {
     AppointmentController _controller = Get.put(AppointmentController());
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
         child: Obx(() => Column(

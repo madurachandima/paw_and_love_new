@@ -53,6 +53,7 @@ class DogCommonDisses extends StatelessWidget {
           )),
       appBar: AppBar(
         elevation: 0,
+        iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

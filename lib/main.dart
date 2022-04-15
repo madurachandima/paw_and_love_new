@@ -92,6 +92,8 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: ColorConfig.orange),
               ),
+              iconTheme:
+              const IconThemeData(color: ColorConfig.textColorDark),
               appBarTheme:
                   const AppBarTheme(backgroundColor: ColorConfig.blue)),
           home: StreamBuilder(

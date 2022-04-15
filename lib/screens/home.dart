@@ -73,7 +73,7 @@ class Home extends StatelessWidget {
                   const Spacer(),
                   cardWidget(
                       image: disease,
-                      text: "Common Disses",
+                      text: "Common Diseases",
                       context: context,
                       pageName: const DogCommonDisses())
                 ],

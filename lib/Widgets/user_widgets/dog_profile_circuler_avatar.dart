@@ -13,6 +13,7 @@ class DogProfileCircularAvatar extends StatelessWidget with DogProfileMethod {
   // ignore: prefer_typing_uninitialized_variables
   final snap;
   final List notification;
+
   DogProfileCircularAvatar(
       {Key? key, required this.snap, required this.notification})
       : super(key: key);
@@ -66,7 +67,7 @@ class DogProfileCircularAvatar extends StatelessWidget with DogProfileMethod {
                     } else {
                       flutterToastMessage(
                           title: "Success",
-                          message: "Succes fully deleted",
+                          message: "Successfully deleted",
                           position: SnackPosition.TOP,
                           backgroundColor: ColorConfig.successGreen);
                     }

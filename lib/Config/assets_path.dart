@@ -10,6 +10,7 @@ final String chatbot = _getImagePath("chatbot.png");
 final String dogImage = _getImagePath("dog.png");
 final String doctorProfile = _getImagePath("doctor_profile.png");
 final String sellerProfile = _getImagePath("seller_profile.png");
+final String coverImage =_getImagePath('cover.png');
 
 String _getImagePath(String filename) {
   return imageAssetsRoot + filename;

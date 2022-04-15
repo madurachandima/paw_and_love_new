@@ -25,40 +25,43 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     () async {
-      DocumentSnapshot snap = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get();
-
-      role.value = snap.get("role");
-      userName.value = snap.get("username");
-      if (role.value == VET_ROLE) {
-        try {
-          vetProfileModel.value = await HomeMethods().getVetProfile();
-          if (vetProfileModel.value != null) {
-            isHaveCompletedProfile.value = true;
-          } else {
-            isHaveCompletedProfile.value = false;
-          }
-        } catch (e) {
-          isHaveCompletedProfile.value = false;
-        }
-      } else if (role.value == SELLER_ROLE) {
-        try {
-          sellerProfileModel.value = await HomeMethods().getSellerProfile();
-          if (sellerProfileModel.value != null) {
-            isHaveCompletedProfile.value = true;
-          } else {
-            isHaveCompletedProfile.value = false;
-          }
-        } catch (e) {
-          isHaveCompletedProfile.value = false;
-        }
-      }
-
-      notificationList.value = await HomeMethods().getDogsVaccinationdetails();
-      //print(notificationList);
+      getUserDetails();
     }();
+  }
+
+  getUserDetails() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    role.value = snap.get("role");
+    userName.value = snap.get("username");
+    if (role.value == VET_ROLE) {
+      try {
+        vetProfileModel.value = await HomeMethods().getVetProfile();
+        if (vetProfileModel.value != null) {
+          isHaveCompletedProfile.value = true;
+        } else {
+          isHaveCompletedProfile.value = false;
+        }
+      } catch (e) {
+        isHaveCompletedProfile.value = false;
+      }
+    } else if (role.value == SELLER_ROLE) {
+      try {
+        sellerProfileModel.value = await HomeMethods().getSellerProfile();
+        if (sellerProfileModel.value != null) {
+          isHaveCompletedProfile.value = true;
+        } else {
+          isHaveCompletedProfile.value = false;
+        }
+      } catch (e) {
+        isHaveCompletedProfile.value = false;
+      }
+    }
+
+    notificationList.value = await HomeMethods().getDogsVaccinationdetails();
   }
 
   getVaccinationByWeeks({required int weeksDiffrience}) {

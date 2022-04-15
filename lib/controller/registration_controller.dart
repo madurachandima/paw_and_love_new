@@ -35,7 +35,7 @@ class RegistrationController extends GetxController {
     String? _password = passwordController.text;
     String? _conPassword = conPasswordController.text;
 
-    if (!GetUtils.isUsername(_username)) {
+    if (_username == "") {
       return "Username is Empty";
     } else if (!GetUtils.isPhoneNumber(_phoneNumber)) {
       return "Phone number is invalid or Empyt";

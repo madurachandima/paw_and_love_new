@@ -44,9 +44,7 @@ class Home extends StatelessWidget {
                             text: _controller.userName.value,
                             style: Theme.of(context).textTheme.headline2),
                       ]))),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
                 children: [
                   if (role == VET_ROLE)
                     Obx(() => cardWidget(
@@ -70,18 +68,12 @@ class Home extends StatelessWidget {
                         pageName: _controller.isHaveCompletedProfile.value
                             ? const ViewSellerProfile()
                             : const CreateSellerProfile())),
-                  const Spacer(),
-                  cardWidget(
-                      image: disease,
-                      text: "Common Diseases",
-                      context: context,
-                      pageName: const DogCommonDisses())
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                  if (role != SELLER_ROLE)
+                    cardWidget(
+                        image: disease,
+                        text: "Common Diseases",
+                        context: context,
+                        pageName: const DogCommonDisses()),
                   role == SELLER_ROLE
                       ? cardWidget(
                           image: breeders,
@@ -93,8 +85,7 @@ class Home extends StatelessWidget {
                           text: "Item \nSellers",
                           context: context,
                           pageName: const ItemSellers()),
-                  const Spacer(),
-                  if (role != VET_ROLE)
+                  if (role == USER_ROLE)
                     cardWidget(
                         image: clinic,
                         text: "Make \nAppointment",
@@ -107,7 +98,73 @@ class Home extends StatelessWidget {
                         context: context,
                         pageName: const ApprovedAppointment())
                 ],
-              )
+              ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     if (role == VET_ROLE)
+              //       Obx(() => cardWidget(
+              //           image: doctorProfile,
+              //           text: "Profile",
+              //           context: context,
+              //           pageName: _controller.isHaveCompletedProfile.value
+              //               ? const ViewVetProfile()
+              //               : const NewVetProfile())),
+              //     if (role == USER_ROLE)
+              //       cardWidget(
+              //           image: dogpPofile,
+              //           text: "Profile",
+              //           context: context,
+              //           pageName: const DogProfile()),
+              //     if (role == SELLER_ROLE)
+              //       Obx(() => cardWidget(
+              //           image: sellerProfile,
+              //           text: "Profile",
+              //           context: context,
+              //           pageName: _controller.isHaveCompletedProfile.value
+              //               ? const ViewSellerProfile()
+              //               : const CreateSellerProfile())),
+              //     const Spacer(),
+              //     if (role != SELLER_ROLE)
+              //       cardWidget(
+              //           image: disease,
+              //           text: "Common Diseases",
+              //           context: context,
+              //           pageName: const DogCommonDisses())
+              //   ],
+              // ),
+
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     role == SELLER_ROLE
+              //         ? cardWidget(
+              //             image: breeders,
+              //             text: "Dashboard",
+              //             context: context,
+              //             pageName: const Dashboard())
+              //         : cardWidget(
+              //             image: breeders,
+              //             text: "Item \nSellers",
+              //             context: context,
+              //             pageName: const ItemSellers()),
+              //     const Spacer(),
+              //     if (role == USER_ROLE)
+              //       cardWidget(
+              //           image: clinic,
+              //           text: "Make \nAppointment",
+              //           context: context,
+              //           pageName: const Veterinarian()),
+              //     if (role == VET_ROLE)
+              //       cardWidget(
+              //           image: clinic,
+              //           text: "Approved \nAppointment",
+              //           context: context,
+              //           pageName: const ApprovedAppointment())
+              //   ],
+              // )
             ]),
       ),
     );

@@ -63,6 +63,8 @@ class NewVetProfile extends StatelessWidget {
             return [
               SliverAppBar(
                 elevation: 0,
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 expandedHeight: 50.h,
                 floating: false,
                 pinned: true,
@@ -199,7 +201,7 @@ class NewVetProfile extends StatelessWidget {
                           isPass: false,
                           hintText: "About you",
                           lableText: "Please Enter About You",
-                          textInputType: TextInputType.number,
+                          textInputType: TextInputType.text,
                           textColor: ColorConfig.orange),
                     ),
 

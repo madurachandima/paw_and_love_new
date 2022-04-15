@@ -5,6 +5,8 @@ import 'package:paw_and_love/screens/seller_and_breeders/dashboard_tabs/new_sell
 import 'package:paw_and_love/screens/seller_and_breeders/dashboard_tabs/your_ads.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../Config/color_config.dart';
+
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -14,9 +16,10 @@ class Dashboard extends StatelessWidget {
         Get.put(SellerDashboardController());
     return DefaultTabController(
         initialIndex: 0,
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
+            iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
             bottom: TabBar(
               onTap: (value) {
                 if (value == 0) {
@@ -33,16 +36,13 @@ class Dashboard extends StatelessWidget {
                   "New Sell",
                   style: TextStyle(fontSize: 15.sp),
                 )),
-                Tab(
-                    child:
-                        Text("Sold Item", style: TextStyle(fontSize: 15.sp))),
                 Tab(child: Text("Your Ads", style: TextStyle(fontSize: 15.sp))),
               ],
             ),
             // title: const Text('Tabs Demo'),
           ),
           body: const TabBarView(
-            children: [NewSell(), Text("sold item"), YourAds()],
+            children: [NewSell(), YourAds()],
           ),
         ));
   }

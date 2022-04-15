@@ -24,9 +24,11 @@ class YourAds extends StatelessWidget {
           );
         }
         if (snapshot.data!.docs.isEmpty) {
-          return Text(
-            "No result found",
-            style: Theme.of(context).textTheme.bodyText2,
+          return Center(
+            child: Text(
+              "No result found",
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
           );
         }
         return ListView.builder(

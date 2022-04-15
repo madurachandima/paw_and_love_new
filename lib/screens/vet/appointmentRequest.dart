@@ -20,6 +20,7 @@ class AppointmentRequest extends StatelessWidget {
       backgroundColor: ColorConfig.white,
       appBar: AppBar(
         elevation: 0,
+        iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -83,7 +84,7 @@ class AppointmentRequest extends StatelessWidget {
                     );
                   }
 
-                  if(snapshot.data != null || snapshot.data!.docs.isNotEmpty){
+                  if (snapshot.data != null || snapshot.data!.docs.isNotEmpty) {
                     _controller.vetApprovalStatus.clear();
                     for (var i = 0; i < snapshot.data!.docs.length; i++) {
                       _controller.vetApprovalStatus.insert(

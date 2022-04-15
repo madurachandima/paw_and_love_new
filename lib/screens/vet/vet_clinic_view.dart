@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 
 class ViewClinic extends StatelessWidget {
   final snap;
+
   const ViewClinic({Key? key, required this.snap}) : super(key: key);
 
   @override
@@ -20,6 +21,8 @@ class ViewClinic extends StatelessWidget {
             return [
               SliverAppBar(
                 elevation: 0,
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 expandedHeight: 5.h,
                 floating: true,
                 pinned: false,

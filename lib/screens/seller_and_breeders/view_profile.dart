@@ -44,6 +44,8 @@ class ViewSellerProfile extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 centerTitle: false,
                 elevation: 0,
                 expandedHeight: 40.h,
@@ -72,9 +74,10 @@ class ViewSellerProfile extends StatelessWidget {
                           fit: StackFit.expand,
                           children: [
                             _homeController.sellerProfileModel.value
-                                    .sellerProfileUrl!.isEmpty
+                                        .sellerProfileUrl ==
+                                    null
                                 ? Image.asset(
-                                    doctorProfile,
+                                    sellerProfile,
                                     fit: BoxFit.cover,
                                   )
                                 : Image.network(

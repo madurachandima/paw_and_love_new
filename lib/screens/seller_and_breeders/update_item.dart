@@ -65,6 +65,7 @@ class UpdateItem extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
       ),
       body: SingleChildScrollView(
         child: Obx(() => Column(

@@ -7,8 +7,11 @@ import 'package:paw_and_love/model/user/dog_illness_model.dart';
 
 import 'package:sizer/sizer.dart';
 
+import '../../Config/color_config.dart';
+
 class DogSymptomView extends StatelessWidget {
   final DogIllnessModel dogIllnessModel;
+
   const DogSymptomView({Key? key, required this.dogIllnessModel})
       : super(key: key);
 
@@ -20,6 +23,8 @@ class DogSymptomView extends StatelessWidget {
             return [
               SliverAppBar(
                 elevation: 0,
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 expandedHeight: 50.h,
                 floating: false,
                 pinned: true,

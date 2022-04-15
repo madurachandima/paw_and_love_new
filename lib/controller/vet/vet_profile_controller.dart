@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:paw_and_love/Services/vet_profile_methods.dart';
 import 'package:paw_and_love/Utils/const.dart';
+import 'package:paw_and_love/controller/home_controller.dart';
 
 class VetProfileController extends GetxController {
+  HomeController _controller = Get.find();
   TextEditingController vetNameController = TextEditingController();
   TextEditingController vetPhoneNumberController = TextEditingController();
-  TextEditingController aboutVetController=TextEditingController();
+  TextEditingController aboutVetController = TextEditingController();
 
   TextEditingController clinicNameController = TextEditingController();
   TextEditingController clinicAddressController = TextEditingController();
@@ -33,12 +35,16 @@ class VetProfileController extends GetxController {
   }
 
   saveVetProfile() async {
-    return await VetProfileMethods().createNewVetprofile(
+    var response = await VetProfileMethods().createNewVetprofile(
         vetName: vetNameController.text,
         phoneNumber: vetPhoneNumberController.text,
         city: city,
         aboutVet: aboutVetController.text,
         profileImageByte: profileImageByte);
+    if (response == 'success') {
+      _controller.getUserDetails();
+    }
+    return response;
   }
 
   addNewClinic() async {

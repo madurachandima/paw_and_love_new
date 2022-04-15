@@ -60,6 +60,8 @@ class CreateSellerProfile extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                iconTheme:
+                    const IconThemeData(color: ColorConfig.textColorDark),
                 elevation: 0,
                 expandedHeight: 50.h,
                 floating: false,

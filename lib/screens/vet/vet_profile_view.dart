@@ -91,79 +91,57 @@ class ViewVetProfile extends StatelessWidget {
               ),
               SliverList(
                   delegate: SliverChildListDelegate([
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                  ),
+                const Padding(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 5),
                   child: Text(
                     "Doctor Name",
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: TextStyle(color: ColorConfig.orange),
                   ),
                 ),
                 Obx(() => Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 5, bottom: 10),
-                      child: CustomeTextInputField(
-                          isReadOnly: true,
-                          textEditingController: TextEditingController(
-                              text:
-                                  "Dr ${_homeController.vetProfileModel.value.vetName}"),
-                          isPass: false,
-                          hintText: "Your Name",
-                          lableText: "Please Enter Your Name",
-                          textInputType: TextInputType.text,
-                          textColor: ColorConfig.orange),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      child: Text(
+                        "Dr ${_homeController.vetProfileModel.value.vetName}",
+                        style:
+                            const TextStyle(color: ColorConfig.textColorDark),
+                      ),
                     )),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                  ),
+                const Padding(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 5),
                   child: Text(
                     "City",
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: TextStyle(color: ColorConfig.orange),
                   ),
                 ),
                 Obx(() => Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 10, bottom: 10),
-                      child: CustomeTextInputField(
-                          isReadOnly: true,
-                          textEditingController: TextEditingController(
-                              text: _homeController.vetProfileModel.value.city),
-                          isPass: false,
-                          hintText: "Your Name",
-                          lableText: "Please Enter Your Name",
-                          textInputType: TextInputType.text,
-                          textColor: ColorConfig.orange),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      child: Text(
+                        _homeController.vetProfileModel.value.city.toString(),
+                        style:
+                            const TextStyle(color: ColorConfig.textColorDark),
+                      ),
                     )),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                  ),
+                const Padding(
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 5),
                   child: Text(
                     "About",
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: TextStyle(color: ColorConfig.orange),
                   ),
                 ),
                 Obx(() => Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 10, bottom: 10),
-                      child: CustomeTextInputField(
-                          isReadOnly: true,
-                          textEditingController: TextEditingController(
-                              text: _homeController
-                                  .vetProfileModel.value.aboutVet),
-                          isPass: false,
-                          hintText: "Your Name",
-                          lableText: "Please Enter Your Name",
-                          textInputType: TextInputType.text,
-                          textColor: ColorConfig.orange),
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                      child: Text(
+                        _homeController.vetProfileModel.value.aboutVet
+                            .toString(),
+                        style:
+                            const TextStyle(color: ColorConfig.textColorDark),
+                      ),
                     )),
                 Padding(
                   padding: const EdgeInsets.only(

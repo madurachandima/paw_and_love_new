@@ -19,21 +19,28 @@ class LoginControler extends GetxController {
     String? _email = emailController.text;
     String? _password = passwordController.text;
 
+    //Validate the user inputs
     if (!GetUtils.isEmail(_email)) {
-      return "Email address is invalid or Empyt";
+      return "Email address is invalid or Empty";
     } else if (_password == "") {
       return "Empty password or Password length should be more than 6 characters";
     }
     try {
-      //register user
+      //log in with firebase auth
       UserCredential _cred = await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
 
       debugPrint(_cred.user!.uid);
+      emailController.clear();
+      passwordController.clear();
       return "success";
+
+      //handle the exception
+    } on FirebaseAuthException catch (err) {
+      return err.message.toString();
     } catch (e) {
       debugPrint(e.toString());
-      return "Somthing went to wrong";
+      return "Something went to wrong";
     }
   }
 }

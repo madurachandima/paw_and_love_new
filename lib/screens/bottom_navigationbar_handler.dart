@@ -45,8 +45,7 @@ class BottomNavigationbarHandler extends StatelessWidget {
     }
 
     return Scaffold(
-        backgroundColor: ColorConfig.white,
-        // appBar: AppBar(),
+        backgroundColor: Colors.white,
         body: Home(role: role),
         bottomNavigationBar: role != SELLER_ROLE
             ? PersistentTabView(

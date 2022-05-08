@@ -5,7 +5,7 @@ const String SELLER_ROLE = "Seller";
 const String ITEM_SELLR="ItemSeller";
 // const String DOG_BREEDER="DogBreeder";
 
-const String ERROR_MESSAGE = "Somthing went to wrong";
+const String ERROR_MESSAGE = "Something went to wrong";
 
 List<String> dogBreeds = [
   "Retrievers (Labrador)",

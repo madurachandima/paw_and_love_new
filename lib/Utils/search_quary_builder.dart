@@ -1,3 +1,4 @@
+
 class SearchQuaryBuilder {
   static List searchQuaryBuilder(String? quaryString) {
     List quaryList = [];

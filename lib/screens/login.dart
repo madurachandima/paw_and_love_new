@@ -27,11 +27,6 @@ class Login extends StatelessWidget {
             backgroundColor: ColorConfig.errorRed);
         _loginControler.isUploading.value = false;
       } else {
-        // flutterToastMessage(
-        //     title: "Success",
-        //     message: "User login success",
-        //     position: SnackPosition.TOP,
-        //     backgroundColor: ColorConfig.successGreen);
         _loginControler.isUploading.value = false;
         Get.off(() => const MiddleScreen());
       }

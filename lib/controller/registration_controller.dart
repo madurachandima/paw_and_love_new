@@ -35,23 +35,24 @@ class RegistrationController extends GetxController {
     String? _password = passwordController.text;
     String? _conPassword = conPasswordController.text;
 
+    //validate user inputs
     if (_username == "") {
       return "Username is Empty";
     } else if (!GetUtils.isPhoneNumber(_phoneNumber)) {
-      return "Phone number is invalid or Empyt";
+      return "Phone number is invalid or Empty";
     } else if (!GetUtils.isEmail(_email)) {
-      return "Email address is invalid or Empyt";
+      return "Email address is invalid or Empty";
     } else if (_password == "" || _password.length < 6) {
       return "Empty password or Password length should be more than 6 characters";
     } else if (_conPassword == "" || _conPassword.length < 6) {
       return "Empty confirm password or confirm password length should be more than 6 characters";
     } else if (_password != _conPassword) {
-      return "Password dosn't matching";
+      return "Password doesn't matching";
     } else if (selectedRole.value == "") {
       return "Please select your role";
     }
     try {
-      //register user
+      //register user with firebase auth
       UserCredential _cred = await _auth.createUserWithEmailAndPassword(
           email: _email, password: _password);
 
@@ -63,10 +64,11 @@ class RegistrationController extends GetxController {
         'role': selectedRole.value
       });
       return "success";
+      //handle exception
     } on FirebaseAuthException catch (err) {
       return err.message;
     } catch (e) {
-      return "Somthing went to wrong";
+      return "Something went to wrong";
     }
   }
 }

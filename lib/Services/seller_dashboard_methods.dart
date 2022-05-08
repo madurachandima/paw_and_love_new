@@ -122,10 +122,12 @@ class SellerDashboardMethods {
 
     try {
       if (itemImageByte != null) {
+        //upload seller ads image to firebase storage
         imageUrl =
             await StorageMethods().uploadImageToStorage("posts", itemImageByte);
       }
 
+      //create seller post model
       SellerPostModel _postModel = SellerPostModel(
           phoneNumber: phoneNumber,
           city: city,
@@ -139,11 +141,14 @@ class SellerDashboardMethods {
           price: price,
           searchQueryItemName: SearchQuaryBuilder.searchQuaryBuilder(itemName));
 
+      //save data in firestore
       await _firestore.collection('posts').doc(id).update(_postModel.toJson());
+
+      //handle exceptions
     } on FirebaseException catch (err) {
       return err.message.toString();
     } catch (e) {
-      print(e);
+
       return ERROR_MESSAGE;
     }
     return "success";

@@ -29,6 +29,7 @@ class HomeController extends GetxController {
     }();
   }
 
+  // get user details and check the user role type
   getUserDetails() async {
     DocumentSnapshot snap = await FirebaseFirestore.instance
         .collection("users")

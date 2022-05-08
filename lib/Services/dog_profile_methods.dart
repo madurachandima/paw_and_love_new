@@ -35,9 +35,11 @@ class DogProfileMethod {
     }
 
     try {
+      // store dog profile images in firebase storage
       String dogProfileUrl = await StorageMethods()
           .uploadImageToStorage("dog_profile_images", profileImageByte);
 
+      //create Dog profile object
       DogProfileModel dogProfileModel = DogProfileModel(
           dogName: dogName,
           dogOwnerName: dogOwnerName,
@@ -48,12 +50,15 @@ class DogProfileMethod {
           recommendedVaccines: recommendedVaccines,
           optionalVaccines: optionalVaccines);
 
+      //save dog profile object in firebase firestore databse
       await _firestore
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection("dog_profiles")
           .doc()
           .set(dogProfileModel.toJson());
+
+      //exception handling
     } on FirebaseException catch (err) {
       // print(err.message);
       return err.message;

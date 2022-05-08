@@ -6,6 +6,7 @@ import 'package:paw_and_love/model/vet/vet_clinic_model.dart';
 class UserMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // request appointment
   Future<String> requestAppointment(
       {required snap,
       required bool isApprovedByVet,
@@ -32,6 +33,7 @@ class UserMethods {
     return "success";
   }
 
+  // delete requested appointment
   Future<String> deleteRequestedAppointment(
       {required String? appointmentId}) async {
     try {

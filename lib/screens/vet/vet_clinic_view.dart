@@ -48,17 +48,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController:
-                          TextEditingController(text: snap['clinic_name']),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "Please Enter Dog Name",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_name'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -66,22 +61,17 @@ class ViewClinic extends StatelessWidget {
                     top: 10,
                   ),
                   child: Text(
-                    "Locaton",
+                    "Location",
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController:
-                          TextEditingController(text: snap['clinic_location']),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_location'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -94,18 +84,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController:
-                          TextEditingController(text: snap['clinic_address']),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "",
-                      textInputType: TextInputType.multiline,
-                      isMultyLineText: true,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_address'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -118,18 +102,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: snap['clinic_description']),
-                      isPass: false,
-                      hintText: "Clinic Description",
-                      lableText: "Please Enter Clinic Description",
-                      textInputType: TextInputType.multiline,
-                      isMultyLineText: true,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_description'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -150,17 +128,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: snap['clinic_open_days_every']),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_open_days_every'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -173,17 +146,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController: TextEditingController(
-                          text: snap['clinic_open_days_except']),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    snap['clinic_open_days_except'].toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -194,17 +162,12 @@ class ViewClinic extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: CustomeTextInputField(
-                      isReadOnly: true,
-                      textEditingController:
-                          TextEditingController(text: _returnOpenTime()),
-                      isPass: false,
-                      hintText: "",
-                      lableText: "",
-                      textInputType: TextInputType.text,
-                      textColor: ColorConfig.orange),
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+                  child: Text(
+                    _returnOpenTime().toString(),
+                    style: const TextStyle(color: ColorConfig.textColorDark),
+                  ),
                 ),
               ]))
             ];

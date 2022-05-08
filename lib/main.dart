@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            backgroundColor: ColorConfig.white,
+              backgroundColor: Colors.white,
               primaryColor: ColorConfig.orange,
               brightness: Brightness.light,
               fontFamily: REGULAR_FONT,
@@ -92,10 +92,11 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: ColorConfig.orange),
               ),
-              iconTheme:
-              const IconThemeData(color: ColorConfig.textColorDark),
+              iconTheme: const IconThemeData(color: ColorConfig.textColorDark),
               appBarTheme:
                   const AppBarTheme(backgroundColor: ColorConfig.blue)),
+
+          //check the user login status
           home: StreamBuilder(
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {

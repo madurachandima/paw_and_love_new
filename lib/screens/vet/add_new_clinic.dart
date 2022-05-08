@@ -35,7 +35,7 @@ class AddnewClinic extends StatelessWidget {
       } else {
         flutterToastMessage(
             title: "Success",
-            message: "Dog profile is created",
+            message: "New clinic added",
             position: SnackPosition.TOP,
             backgroundColor: ColorConfig.successGreen);
         Get.off(() => const ViewVetProfile());
